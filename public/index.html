@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resident List</title>
+  <!-- <link href="styles.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+ <main class="flex-col bg-gray-200 min-h-screen p-16">
+
+   <div class="flex flex-row justify-between bg-slate-600 p-8 rounded-t-lg items-center">
+     <p class="text-white font-bold text-2xl">Nagsiya Residents</p>
+     <div>
+       <button id="addResidentButton" class="button p-2 bg-green-500 rounded-lg hover:bg-green-600 text-white font-bold">Add Resident</button>
+      </div>
+    </div>
+    
+    <table id="residentTable" class="bg-gray-300 w-full">
+      <thead>
+        <tr>
+          <th class="p-4 text-center">FIRST NAME</th>
+          <th class="p-4 text-center">MIDDLE NAME</th>
+          <th class="p-4 text-center">LAST NAME</th>
+          <th class="p-4 text-center">Gender</th>
+          <th class="p-4 text-center">Date of Birth</th>
+          <th class="p-4 text-center">Address</th>
+          <th class="p-4 text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="capitalize">
+        
+      </tbody>
+    </table>
+    
+    
+    <!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal hidden">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this resident?</p>
+    <div class="modal-actions">
+      <button id="confirmDelete" class="button">Yes</button>
+      <button id="cancelDelete" class="button">No</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="addResidentModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="">
+      
+      <form id="residentForm" class="flex flex-col gap-2">
+        <div class="flex flex-col text-left">
+          <label for="firstName" class="font-bold">First Name: </label>
+          <input type="text" id="firstName" name="firstName" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="Enter First Name">
+        </div>
+        
+        <div class="flex flex-col text-left">
+          <label for="middleName" class="font-bold">Middle Name: </label>
+          <input type="text" id="middleName" name="middleName" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="Enter Middle Name">
+        </div>
+        
+        <div class="flex flex-col text-left">
+          <label for="lastName" class="font-bold">Last Name: </label>
+          <input type="text" id="lastName" name="lastName" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="Enter Last Name">
+        </div>
+        
+        <div class="flex flex-col text-left">
+          <label for="date" class="font-bold">Date of Birth </label>
+          <input type="date" id="birthDate" name="birthDate" required class="w-full border border-gray-300 rounded-sm p-2">
+        </div>
+        
+        <div class="flex flex-col text-left">
+          <label for="gender" class="font-bold">Gender: </label>
+          <select name="gender" id="gender" required class="w-full border border-gray-300 rounded-sm p-2">
+            <option selected disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          
+        </div>
+        
+        <div class="flex flex-col text-left">
+          <label for="address" class="font-bold">Purok: </label>
+          <select name="address" id="address" required class="w-full border border-gray-300 rounded-sm p-2">
+            <option selected disabled>Select Purok</option>
+            <option value="Purok 1">Purok 1</option>
+            <option value="Purok 2">Purok 2</option>
+            <option value="Purok 3">Purok 3</option>
+            <option value="Purok 4">Purok 4</option>
+          </select>
+          
+        </div>
+        
+        
+        <div class="modal-actions flex flex-row gap-2">
+          <button id="confirmAdd" type="submit" class="button p-2 bg-green-500 rounded hover:bg-green-600 text-white font-bold w-1/2">Add Resident</button>
+          <button id="cancelAdd" class="button p-2 bg-red-500 rounded hover:bg-red-600 text-white font-bold w-1/2">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Resident Modal -->
+<div id="editResidentModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Edit Resident</h2>
+    <form id="editResidentForm" class="form flex-col">
+      <div class="flex-col">
+        <label for="editFirstName">First Name: </label>
+        <input type="text" id="editFirstName" name="firstName" required>
+      </div>
+      
+      <div class="flex-col">
+        <label for="editMiddleName">Middle Name: </label>
+        <input type="text" id="editMiddleName" name="middleName" required>
+      </div>
+      
+      <div class="flex-col">
+        <label for="editLastName">Last Name: </label>
+        <input type="text" id="editLastName" name="lastName" required>
+      </div>
+      
+      <div class="flex-col">
+        <label for="editBirthDate">Date of Birth: </label>
+        <input type="date" id="editBirthDate" name="birthDate" required>
+      </div>
+      
+      <div class="flex-col">
+        <label for="editGender">Gender: </label>
+        <select name="gender" id="editGender" required>
+          <option value="select" disabled>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      
+      <div class="flex-col">
+        <label for="editAddress">Purok: </label>
+        <select name="address" id="editAddress" required>
+          <option value="select" disabled>Select Purok</option>
+          <option value="Purok 1">Purok 1</option>
+          <option value="Purok 2">Purok 2</option>
+          <option value="Purok 3">Purok 3</option>
+          <option value="Purok 4">Purok 4</option>
+        </select>
+      </div>
+      
+      <div class="modal-actions flex-row">
+        <button id="confirmEdit" type="submit" class="button">Save Changes</button>
+        <button id="cancelEdit" class="button" onclick="closeEditModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+</main>
+<div id="notification" class="notification"></div>
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+

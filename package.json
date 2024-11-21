@@ -1,0 +1,22 @@
+{
+  "name": "resident-list",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "express": "^4.21.1",
+    "postcss": "^8.4.49",
+    "sqlite3": "^5.1.7"
+  },
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}
