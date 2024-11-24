@@ -164,6 +164,10 @@ document.getElementById("addResidentButton").addEventListener("click", () => {
   };
 });
 
+document.getElementById("cancelAdd").addEventListener("click", () => {
+  closeAddModal();
+});
+
 function closeAddModal() {
   addResidentModal.classList.add("hidden");
 }

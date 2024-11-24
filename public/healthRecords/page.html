@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resident List</title>
+  <!-- <link href="styles.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../output.css">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../components/my-nav.js"></script>
+</head>
+<body>
+  
+ <main class="flex-col bg-gray-200 min-h-screen p-16">
+    <div>
+        <my-nav></my-nav>
+    </div>
+
+   <div class="flex flex-row justify-between bg-slate-600 p-8 rounded-t-lg items-center">
+     <p class="text-white font-bold text-2xl">Nagsiya Health Records</p>
+     <!-- <div>
+       <button id="addResidentButton" class="button p-2 bg-green-500 rounded-lg hover:bg-green-600 text-white font-bold">Add Resident</button>
+      </div> -->
+    </div>
+    
+
+    <table class="bg-gray-300 w-full">
+        <thead>
+            <tr>
+                <th class="p-4 text-center">Name</th>
+                <th class="p-4 text-center">Height</th>
+                <th class="p-4 text-center">Weight</th>
+                <th class="p-4 text-center">BMI</th>
+                <th class="p-4 text-center">BMI STATUS</th>
+                <th class="p-4 text-center">Systolic</th>
+                <th class="p-4 text-center">Diastolic</th>
+                <th class="p-4 text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rows will be inserted here -->
+        </tbody>
+    </table>
+
+    
+    <div id="addModal" class="modal hidden">
+        <div class="modal-content">
+          <div class="">
+            <h2 class="font-bold text-2xl mb-4">Add Health Record</h2>
+            <form id="addForm" class="flex flex-col p-4 gap-4">
+                
+            <div class="flex flex-col gap-2 mb-4">
+                    <p class="font-bold text-lg text-left">BODY MASS INDEX</p>
+                    <div class="flex flex-row justify-between gap-2">
+                        <input type="number" id="height" name="height" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="HEIGHT (cm)" >
+                        <input type="number" id="weight" name="weight" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="WEIGHT (kg)" >
+                </div>
+                <div class="flex flex-row justify-between gap-2">
+                    <input type="number" id="bmi" name="bmi" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="BMI" readonly>
+                    <input type="text" id="bmiStatus" name="bmiStatus" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="BMI STATUS" readonly>
+                </div>
+            </div>
+                
+            <div class="flex flex-col gap-2">
+                    <p class="font-bold text-lg text-left">TEMPERATURE</p>
+                    <input type="number" id="temperature" name="temperature" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="temperature">
+                    <input readonly type="text" id="temperatureStatus" name="temperatureStatus" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="Status">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <p class="font-bold text-lg text-left">BLOOD PRESSURE</p>
+                <div class="flex flex-row justify-between gap-2">
+                    <input type="number" id="systolic" name="systolic" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="SYSTOLIC">
+                    <input type="number" id="diastolic" name="diastolic" required class="w-full border border-gray-300 rounded-sm p-2" placeholder="DIASTOLIC">
+                </div>
+                    <input type="text" id="bpStatus" name="bpStatus" class="w-full border border-gray-300 rounded-sm p-2" placeholder="BP STATUS" readonly>
+               
+            </div>
+
+                <div class="flex flex-col text-left">
+                    <label for="dateOfCheckup" class="font-bold">Date of Checkup: </label>
+                    <input type="date" id="dateOfCheckup" name="dateOfCheckup" class="w-full border border-gray-300 rounded-sm p-2">
+                </div>
+                <div class="modal-actions flex-row">
+                  <button id="confirmAdd" type="submit" class="button">Save</button>
+                  <button id="cancelAdd" class="button" onclick="closeAddModal()" class="button bg-red-500 p-2 rounded">Cancel</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>    
+
+
+
+
+    <div id="viewModal" class="modal-records hidden">
+        <div class="modal-content-records">
+          <div class="flex flex-col justify-center items-center">
+            <h2 class="font-bold text-2xl mb-4">Record List</h2>
+            <table  class=" w-full">
+                <thead>
+                    <tr>
+                        <th class="p-4 text-center">DATE</th>
+                        <th class="p-4 text-center">HEIGHT</th>
+                        <th class="p-4 text-center">WEIGHT</th>
+                        <th class="p-4 text-center">BMI</th>
+                        <th class="p-4 text-center">BMI STATUS</th>
+                        <th class="p-4 text-center">TEMPERATURE</th>
+                        <th class="p-4 text-center">TEMPERATURE STATUS</th>
+                        <th class="p-4 text-center">SYSTOLIC</th>
+                        <th class="p-4 text-center">DIASTOLIC</th>
+                        <th class="p-4 text-center">BP STATUS</th>
+                    </tr>
+                </thead>
+                <tbody id="healthRecordTable">
+                    <!-- Records will be inserted here -->
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </div>    
+
+
+
+    
+
+</main>
+<div id="notification" class="notification"></div>
+
+
+
+<script src="../scripts/healthRecords.js"></script>
+</body>
+</html>
+
+
